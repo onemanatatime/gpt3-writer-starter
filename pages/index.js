@@ -51,7 +51,7 @@ const Home = () => {
         </div>
         <div className="prompt-container">
           <textarea 
-            placeholder="start typing here" 
+            placeholder="bitcoin $10k, bear market, brace yourselves" 
             className="prompt-box" 
             value={userInput}
             onChange={onUserChangedText}
