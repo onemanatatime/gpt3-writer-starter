@@ -43,15 +43,15 @@ const Home = () => {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>Generate Quality Tweets</h1>
+            <h1>Tweet Thread Generator</h1>
           </div>
           <div className="header-subtitle">
-            <h2>Insert keypoints to automatically turn it into a tweet!</h2>
+            <h2>Insert a title to automatically generate a thread!</h2>
           </div>
         </div>
         <div className="prompt-container">
           <textarea 
-            placeholder="bitcoin $10k, bear market, brace yourselves" 
+            placeholder="not your keys not your coins" 
             className="prompt-box" 
             value={userInput}
             onChange={onUserChangedText}

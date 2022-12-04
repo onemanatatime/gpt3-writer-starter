@@ -7,9 +7,9 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = `
-Write me a tweet in the style of CZ Binance with the keywords below. Please make sure the tweet goes in-depth on the topic and shows that the writer did their research.
+Write me a detailed table of contents for a tweet thread with the title below, written in the style of Elon Musk.
 
-Keywords: 
+Title: 
 `;
 const generateAction = async (req, res) => {
   // Run first prompt
@@ -24,7 +24,32 @@ const generateAction = async (req, res) => {
   
   const basePromptOutput = baseCompletion.data.choices.pop();
 
-  res.status(200).json({ output: basePromptOutput });
+  // I build Prompt #2.
+  const secondPrompt = 
+  `
+  Take the table of contents and title of the tweet thread below and generate a tweet thread written in the style of Changpeng Zhao. Make it feel like a story. Don't just list the points. Go deep into each one. Explain why.
+
+  Title: ${req.body.userInput}
+
+  Table of Contents: ${basePromptOutput.text}
+
+  Tweet Thread:
+  `
+  
+  // I call the OpenAI API a second time with Prompt #2
+  const secondPromptCompletion = await openai.createCompletion({
+    model: 'text-davinci-003',
+    prompt: `${secondPrompt}`,
+    // I set a higher temperature for this one. Up to you!
+    temperature: 0.85,
+		// I also increase max_tokens.
+    max_tokens: 500,
+  });
+  
+  // Get the output
+  const secondPromptOutput = secondPromptCompletion.data.choices.pop();
+
+  res.status(200).json({ output: secondPromptOutput });
 };
 
 export default generateAction;
