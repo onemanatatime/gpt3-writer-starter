@@ -27,7 +27,7 @@ const generateAction = async (req, res) => {
   // I build Prompt #2.
   const secondPrompt = 
   `
-  Take the table of contents and title of the tweet thread below and generate a tweet thread written in the style of Changpeng Zhao. Make it feel like a story. Don't just list the points. Go deep into each one. Explain why.
+  Take the table of contents and title of the tweet thread below and generate a tweet thread written in the style of Changpeng Zhao. Make it feel like a story. Don't just list the points. Go deep into each one. Explain why. Do not reveal who you are.
 
   Title: ${req.body.userInput}
 
